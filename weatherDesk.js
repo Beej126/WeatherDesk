@@ -39,7 +39,11 @@ rp({
   //debug:fs.writeFileSync(process.env.TEMP + "/weatherDesk-beforeCleanup.htm", $.html());
 
   //pull the nifty background image... yahoo does a nice job of changing it up with an appropriate theme matched to the current weather
-  var bgurl = $('#Lead-0-WeatherFixedBackgroundPhoto-Proxy > div > div > div').attr("style").match(/http.*jpg/gi)[0];
+  var bgurl = $("div[id*='BackgroundPhoto'] div[style*='url']").first().css("background-image");
+  if (bgurl) bgurl = bgurl.replace(/(url\(|\)|'|")/gi, '').split("https:");
+  bgurl = "https:" + bgurl[bgurl.length - 1];
+  //console.log("background: " + bgurl);
+  
   //drop in the background image right on the body
   $("body").css({
     "background" : "url(" + bgurl + ") no-repeat center center fixed",  

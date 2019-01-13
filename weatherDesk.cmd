@@ -1,7 +1,10 @@
 cd /d "%~dp0"
 
-::this is compiled from node js app here:
-weatherDesk.exe
+::this is compiled from node js app here: https://github.com/Beej126/WeatherDesk
+weatherDesk.js.exe
+
+::call code "%temp%\weatherDesk.htm"
+::start "" "%temp%\weatherDesk.htm"
 
 wkhtmltoimage.exe --disable-smart-width --width 1600 --height 1080 %temp%\weatherDesk.htm %temp%\weatherDesk.png
 
